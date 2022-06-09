@@ -11,7 +11,7 @@ import Cocoa
 class ViewController: NSViewController {
 
     @IBOutlet weak var inputTextField: NSTextField!
-    
+
     // establish our colors
     let fieldBackgroundColor = NSColor(
                                 calibratedHue: 230/360,
@@ -28,25 +28,25 @@ class ViewController: NSViewController {
                                 saturation: 0.40,
                                 brightness: 0.35,
                                 alpha: 1)
-    
+
     let placeholderTextColor = NSColor(
                                 calibratedHue: 230/360,
                                 saturation: 0.40,
                                 brightness: 0.35,
                                 alpha: 0.5)
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // these attributes are set in Interface Builder, but are included to prevent mistakes
         inputTextField.bordered = true
         inputTextField.drawsBackground = true
-        
+
         // use CALayer with text field
         inputTextField.wantsLayer = true
         let textFieldLayer = CALayer()
         inputTextField.layer = textFieldLayer
-        
+
         // assign colors
         inputTextField.backgroundColor = fieldBackgroundColor
         inputTextField.layer?.backgroundColor = fieldBackgroundColor.CGColor // double-bumped!
@@ -54,14 +54,14 @@ class ViewController: NSViewController {
         inputTextField.layer?.borderWidth = 1
         inputTextField.layer?.cornerRadius = 5
         inputTextField.textColor = fieldTextColor
-        
+
         // attributed string for placeholder text color
         let placeholderAttributes: [String: AnyObject] = [
             NSForegroundColorAttributeName: placeholderTextColor
         ]
-        
+
         let placeholderAttributedString = NSMutableAttributedString(string: "Add text here", attributes: placeholderAttributes)
-        
+
         // match baseline of placeholder to input text
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.minimumLineHeight = 17.0
@@ -71,7 +71,6 @@ class ViewController: NSViewController {
         
         inputTextField.placeholderAttributedString =  placeholderAttributedString
     }
-
 
 }
 
