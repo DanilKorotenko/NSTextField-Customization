@@ -39,7 +39,7 @@ class ViewController: NSViewController {
         super.viewDidLoad()
 
         // these attributes are set in Interface Builder, but are included to prevent mistakes
-        inputTextField.bordered = true
+        inputTextField.isBordered = true
         inputTextField.drawsBackground = true
 
         // use CALayer with text field
@@ -49,15 +49,15 @@ class ViewController: NSViewController {
 
         // assign colors
         inputTextField.backgroundColor = fieldBackgroundColor
-        inputTextField.layer?.backgroundColor = fieldBackgroundColor.CGColor // double-bumped!
-        inputTextField.layer?.borderColor = fieldBorderColor.CGColor
+        inputTextField.layer?.backgroundColor = fieldBackgroundColor.cgColor // double-bumped!
+        inputTextField.layer?.borderColor = fieldBorderColor.cgColor
         inputTextField.layer?.borderWidth = 1
         inputTextField.layer?.cornerRadius = 5
         inputTextField.textColor = fieldTextColor
 
         // attributed string for placeholder text color
-        let placeholderAttributes: [String: AnyObject] = [
-            NSForegroundColorAttributeName: placeholderTextColor
+        let placeholderAttributes: [NSAttributedStringKey: AnyObject] = [
+            NSAttributedStringKey.foregroundColor: placeholderTextColor
         ]
 
         let placeholderAttributedString = NSMutableAttributedString(string: "Add text here", attributes: placeholderAttributes)
@@ -66,9 +66,9 @@ class ViewController: NSViewController {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.minimumLineHeight = 17.0
         paragraphStyle.maximumLineHeight  = 17.0
-        
-        placeholderAttributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSRange(location: 0,length: placeholderAttributedString.length))
-        
+
+        placeholderAttributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0,length: placeholderAttributedString.length))
+
         inputTextField.placeholderAttributedString =  placeholderAttributedString
     }
 
